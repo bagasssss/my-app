@@ -17,10 +17,13 @@ export const userSlice = createSlice({
     editUserSuccess: (state, action) => {
       state.userList = state.userList.map((u) => u.id === action.payload.id ? action.payload : u)
       state.dataForEditing = {}
+    },
+    cleanEditingData: (state) => {
+      state.dataForEditing = {}
     }
   },
 })
 
-export const { addUser, removeUser, editUser, editUserSuccess } = userSlice.actions
+export const { addUser, removeUser, editUser, editUserSuccess, cleanEditingData } = userSlice.actions
 
 export default userSlice.reducer

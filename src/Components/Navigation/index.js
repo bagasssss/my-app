@@ -3,11 +3,15 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import { withRouter } from 'react-router-dom';
+import { useDispatch } from 'react-redux'
+import { cleanEditingData } from "../../store/confogureStore";
 import { navigationLinks} from "../../const";
 import './navigation.css';
 
 const Navigation = ({ history }) => {
+  const dispatch = useDispatch();
   const goToUserForm = () => {
+    dispatch(cleanEditingData())
     history.push(navigationLinks.userForm.href)
   };
   const goToTable = () => {

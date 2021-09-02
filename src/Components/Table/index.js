@@ -9,6 +9,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 import { navigationLinks} from "../../const";
 import './table.css';
 import { editUser, removeUser } from "../../store/confogureStore";
@@ -21,7 +22,7 @@ const TableComponent = ({ history }) => {
     e.stopPropagation();
     e.preventDefault();
     dispatch(removeUser(user.id))
-  }
+  };
 
   const editUserHandle = (user) => {
     const locationObj = {
@@ -30,7 +31,7 @@ const TableComponent = ({ history }) => {
     }
     dispatch(editUser(user))
     history.push(locationObj)
-  }
+  };
 
   return (
     <TableContainer component={Paper}>
@@ -41,19 +42,22 @@ const TableComponent = ({ history }) => {
             <TableCell align="right">Email</TableCell>
             <TableCell align="right">Gender</TableCell>
             <TableCell align="right">Status</TableCell>
-            <TableCell align="right">Delete</TableCell>
+            <TableCell align="right">Actions</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {userList.map((user) => (
-            <TableRow key={user.id} onClick={() => editUserHandle(user)}>
+            <TableRow key={user.id}>
               <TableCell component="th" scope="row">
                 {user.name}
               </TableCell>
               <TableCell align="right">{user.email}</TableCell>
               <TableCell align="right">{user.gender}</TableCell>
               <TableCell align="right">{user.status}</TableCell>
-              <TableCell onClick={(e) => {deleteIconOnclickHandler(e, user)}} align="right"><DeleteIcon /></TableCell>
+              <TableCell align="right">
+                <EditIcon onClick={() => editUserHandle(user)} />
+                <DeleteIcon onClick={(e) => {deleteIconOnclickHandler(e, user)}} />
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

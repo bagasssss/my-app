@@ -78,10 +78,10 @@ let EditUserForm = (props) => {
 
       <div>
         <button type="submit" disabled={pristine || submitting}>
-          Submit
+          {isEdit ? 'Update' : 'Submit'}
         </button>
-        <button type="button" disabled={pristine || submitting} onClick={reset}>
-          Clear Values
+        <button type="button" onClick={reset}>
+          {isEdit ? 'Undo' : 'Clear Values'}
         </button>
       </div>
     </form>
